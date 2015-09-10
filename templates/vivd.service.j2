@@ -1,0 +1,18 @@
+[Unit]
+Description=vivd container testing tool
+Requires=docker.service
+
+[Service]
+Type=simple
+WorkingDirectory={{ vivd_directory }}
+PermissionsStartOnly=true
+ExecStart={{ java_cmd }} -jar vivd.jar
+User=vivd
+# The assumption is that this system is set up for "docker" group to have access
+# to the docker socket.
+SupplementaryGroups=docker
+ReadOnlyDirectories=/
+ReadWriteDirectories={{ vivd_data_directory }}
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,40 @@
+{
+  ; deployed by ansible.
+
+  :startup-timeout {{ vivd_startup_timeout }},
+  :title "{{ vivd_title }}",
+  :default-url "{{ vivd_default_url }}",
+  :max-containers {{ vivd_max_containers }},
+  :max-containers-up {{ vivd_max_containers_up }},
+  :git-url "{{ vivd_git_url }}",
+  :docker-source-image "{{ vivd_docker_source_image }}",
+  :docker-http-port {{ vivd_docker_http_port }},
+  :docker-code-path "{{ vivd_docker_code_path }}",
+
+  {% if vivd_docker_entrypoint is defined %}
+  :docker-entrypoint [
+    {% for item in vivd_docker_entrypoint %}
+      "{{ item }}"
+    {% endfor %}
+  ]
+  {% endif %}
+
+  {% if vivd_docker_cmd is defined %}
+  :docker-cmd [
+    {% for item in vivd_docker_cmd %}
+      "{{ item }}"
+    {% endfor %}
+  ]
+  {% endif %}
+
+  {% if vivd_docker_run_arguments is defined %}
+  :docker-run-arguments [
+    {% for item in vivd_docker_run_arguments %}
+      "{{ item }}"
+    {% endfor %}
+  ]
+  {% endif %}
+
+  :http-port {{ vivd_http_port }},
+  :http-host "{{ vivd_http_host }}",
+}

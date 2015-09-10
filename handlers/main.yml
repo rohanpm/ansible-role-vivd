@@ -1,2 +1,8 @@
 ---
-# handlers file for .
+- name: systemctl daemon-reload
+  become: yes
+  command: /bin/systemctl daemon-reload
+
+- name: vivd service restart
+  become: yes
+  service: name=vivd state=restarted

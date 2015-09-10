@@ -1,2 +1,60 @@
 ---
-# tasks file for .
+- name: Java installed
+  tags: package
+  become: yes
+  yum: name={{ java_package }} state=present
+
+- name: vivd user
+  tags: user
+  become: yes
+  user: name={{ vivd_user }} createhome=no home={{ vivd_directory }} shell=/sbin/nologin
+
+- name: vivd data directory
+  tags: file
+  become: yes
+  file: name={{ vivd_data_directory }} state=directory owner={{ vivd_user }}
+
+- name: vivd jar
+  tags: package
+  become: yes
+  become_user: "{{ vivd_user }}"
+  # I know "sha256sum" is deprecated, but I want this to work on ansible < 2.0
+  get_url:
+    url: "{{ vivd_url }}"
+    dest: "{{ vivd_directory }}/{{ vivd_basename }}"
+    sha256sum: "{{ vivd_sha256sum }}"
+    owner: "{{ vivd_user }}"
+
+- name: vivd jar link
+  tags: configure
+  become: yes
+  become_user: "{{ vivd_user }}"
+  file: name={{ vivd_directory }}/vivd.jar state=link src={{ vivd_basename }} force=yes
+  notify: vivd service restart
+
+- name: vivd configuration file
+  tags: configure
+  become: yes
+  become_user: "{{ vivd_user }}"
+  template: src=config.clj.j2 dest={{ vivd_data_directory }}/config.clj owner={{ vivd_user }}
+  notify: vivd service restart
+
+# Note that it is not actually necessary to do the clone here.  vivd can do it.
+# But it's nice to do it here because it might be slow or prone to failure
+# (e.g. if SSL certs haven't been set up).
+- name: vivd git
+  tags: git
+  become: yes
+  become_user: "{{ vivd_user }}"
+  git: dest={{ vivd_data_directory }}/git bare=yes repo={{ vivd_git_url }} update=no
+
+- name: vivd service file
+  tags: service
+  become: yes
+  template: src=vivd.service.j2 dest=/etc/systemd/system/vivd.service
+  notify: systemctl daemon-reload
+
+- name: vivd service
+  tags: service
+  become: yes
+  service: name=vivd enabled=yes
