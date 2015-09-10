@@ -18,6 +18,8 @@ galaxy_info:
     - 20
     - 21
     - 22
-
+  categories:
+  - web
+  - development
 dependencies: []
   
