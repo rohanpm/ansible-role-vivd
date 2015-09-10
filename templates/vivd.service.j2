@@ -6,7 +6,7 @@ Requires=docker.service
 Type=simple
 WorkingDirectory={{ vivd_directory }}
 PermissionsStartOnly=true
-ExecStart={{ java_cmd }} -jar vivd.jar
+ExecStart={{ vivd_java_cmd }} -jar vivd.jar
 User=vivd
 # The assumption is that this system is set up for "docker" group to have access
 # to the docker socket.

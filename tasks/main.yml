@@ -2,7 +2,7 @@
 - name: Java installed
   tags: package
   become: yes
-  yum: name={{ java_package }} state=present
+  yum: name={{ vivd_java_package }} state=present
 
 - name: vivd user
   tags: user
