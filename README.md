@@ -58,7 +58,8 @@ vivd_data_directory: "{{ vivd_directory }}/data"
 vivd_startup_timeout: 180
 vivd_title: Containers
 vivd_default_url: /
-vivd_max_containers: 1000
+vivd_max_containers: 10000
+vivd_max_containers_built: 500
 vivd_max_containers_up: 8
 vivd_http_host: 0.0.0.0
 vivd_http_port: 8080

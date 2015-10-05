@@ -1,8 +1,8 @@
 ---
 vivd_java_package: java-1.7.0-openjdk-headless
 vivd_java_cmd: /usr/lib/jvm/jre-1.7.0/bin/java
-vivd_version: 1.4.0
-vivd_sha256sum: fb7fe790cb58c5c6c2a8879e41415a7cfeb35595d069be1c9c6e4d2b137c90be
+vivd_version: 1.4.1
+vivd_sha256sum: fd6a381de45fc08a09cbe73fca04322861b942fa87c7f9bd961f3a749678791e
 vivd_basename: vivd-{{ vivd_version }}-standalone.jar
 vivd_url: https://dl.bintray.com/rohanpm/generic/{{ vivd_basename }}
 vivd_user: vivd
@@ -13,7 +13,8 @@ vivd_data_directory: "{{ vivd_directory }}/data"
 vivd_startup_timeout: 180
 vivd_title: Containers
 vivd_default_url: /
-vivd_max_containers: 1000
+vivd_max_containers: 10000
+vivd_max_containers_built: 500
 vivd_max_containers_up: 4
 vivd_http_host: 0.0.0.0
 vivd_http_port: 8080
