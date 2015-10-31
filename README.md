@@ -55,6 +55,8 @@ vivd_user: vivd
 vivd_directory: /srv/vivd
 vivd_data_directory: "{{ vivd_directory }}/data"
 
+vivd_src_config: misc/vivd/config.clj
+
 vivd_startup_timeout: 180
 vivd_title: Containers
 vivd_default_url: /

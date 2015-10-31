@@ -12,6 +12,10 @@
   :docker-http-port {{ vivd_docker_http_port }},
   :docker-code-path "{{ vivd_docker_code_path }}",
 
+  {% if vivd_src_config is defined %}
+  :src-config "{{ vivd_src_config }}"
+  {% endif %}
+
   {% if vivd_docker_entrypoint is defined %}
   :docker-entrypoint [
     {% for item in vivd_docker_entrypoint %}
