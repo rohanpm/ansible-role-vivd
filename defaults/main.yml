@@ -1,8 +1,8 @@
 ---
 vivd_java_package: java-1.7.0-openjdk-headless
 vivd_java_cmd: /usr/lib/jvm/jre-1.7.0/bin/java
-vivd_version: 1.6.1
-vivd_sha256sum: 1595e7644807a5755223eb7080c34d76c0b6e865aea93161a983640ad4073ff3
+vivd_version: 1.6.2
+vivd_sha256sum: c8e18d5b55c7f0482f946eb50fd955ce96fca3aeae2d7294487a35d6dd29e480
 vivd_basename: vivd-{{ vivd_version }}-standalone.jar
 vivd_url: https://dl.bintray.com/rohanpm/generic/{{ vivd_basename }}
 vivd_user: vivd
